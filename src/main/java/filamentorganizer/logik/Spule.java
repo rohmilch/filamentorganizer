@@ -1,6 +1,6 @@
-package filamentorganizer.spule;
+package filamentorganizer.logik;
 
-public class spule {
+public class Spule {
 	
 	int mLength;
 	int mTotalWeigth;
