@@ -35,24 +35,27 @@ public class Controller {
 				System.out.println(pE.getActionCommand());
 				if (pE.getActionCommand().equals(mView.getBtnAdddNewSpool().getText())) {
 					String lName = mView.getMtextName().getText();
-					int lDiameter = Integer.parseInt(mView.getMtextDiameter().getText());
+					double lDiameter = Double.parseDouble(mView.getMtextDiameter().getText());
 					int lLength = Integer.parseInt(mView.getMtextLength().getText());
 					int lWeigth = Integer.parseInt(mView.getMtextWeigth().getText());
 					int lNoozleTemp = Integer.parseInt(mView.getMtextNoozleTemp().getText());
 					int lBedTemp = Integer.parseInt(mView.getMtextBedTemp().getText());
 					int lPrice = Integer.parseInt(mView.getMtextPrice().getText());
-//			String lColour = mView.getMtextrice().getText();
-					mShelf.addNewSpoolToShelf(lLength, lWeigth, "black", lName, "a", Material.PLA, lDiameter, lPrice,
-							lNoozleTemp, lBedTemp);
+					String lColour = mView.getMtextColour().getText();
+					String lManufacturer = mView.getMtextManufacturer().getText();
 					
-						mShelf.addRow(new Object[] {lName, String.valueOf(lLength), String.valueOf(lWeigth), "black", Material.PLA.getText()   });
-						
+					String lMaterial = mView.getComboBoxMaterial().getSelectedItem().toString();
+					mShelf.addNewSpoolToShelf(lLength, lWeigth, lColour, lName, lManufacturer, lMaterial, lDiameter,
+							lPrice, lNoozleTemp, lBedTemp);
+
+					mShelf.addRow(new Object[] { lName, String.valueOf(lLength), String.valueOf(lWeigth), lColour,
+							lMaterial});
+
 				}
 
 			}
 		});
 
 	}
-
 
 }
