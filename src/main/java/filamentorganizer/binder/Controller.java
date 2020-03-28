@@ -49,6 +49,17 @@ public class Controller {
 
 			}
 		});
+//
+//		ListSelectionModel lSelectionModel = mView.getMtableSpoolShelf().getSelectionModel();
+//		lSelectionModel.addListSelectionListener(new ListSelectionListener() {
+//
+//			public void valueChanged(ListSelectionEvent pE) {
+//				System.out.println(pE.getSource());
+//
+//				// TODO Auto-generated method stub
+//
+//			}
+//		});
 
 	}
 
