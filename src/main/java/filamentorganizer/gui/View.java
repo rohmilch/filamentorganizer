@@ -11,10 +11,15 @@ import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
+
 import java.awt.Component;
 import javax.swing.JLabel;
 import java.awt.Button;
 import javax.swing.border.LineBorder;
+
+import filamentorganizer.logik.Material;
+
 import java.awt.Color;
 import javax.swing.JToggleButton;
 import javax.swing.JComboBox;
@@ -72,6 +77,8 @@ public class View  {
     	
     	mComboBoxMaterial = new JComboBox();
     	mComboBoxMaterial.setBounds(83, 45, 106, 20);
+    	mComboBoxMaterial.setModel(new DefaultComboBoxModel(Material.values()));
+
     	mContentPane.add(mComboBoxMaterial);
     	
     	JLabel lblMaterial = new JLabel("Material");
@@ -129,7 +136,7 @@ public class View  {
     	mtextWeigth.setBounds(83, 116, 106, 20);
     	mContentPane.add(mtextWeigth);
     	
-    	mtextDiameter = new JTextField();
+    	mtextDiameter = new JTextField("1.75");
     	mtextDiameter.setColumns(10);
     	mtextDiameter.setBounds(83, 241, 106, 20);
     	mContentPane.add(mtextDiameter);
