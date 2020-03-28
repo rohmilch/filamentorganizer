@@ -7,7 +7,7 @@ public class FilamentSpool {
 	private String mColour;
 	private String mName;
 	private String mManufacturer;
-	private Material mMaterial; // Enum
+	private Material mMaterial;
 	private double mDiameter; // egal?
 	private double mPrice;
 	private int mIdealNoozleTemp;
