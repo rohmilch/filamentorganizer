@@ -2,8 +2,14 @@ package filamentorganizer.logik;
 
 import java.util.List;
 
-public class Shelf {
+import javax.swing.table.DefaultTableModel;
 
+public class Shelf extends DefaultTableModel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7249118366193008868L;
 	private List<FilamentSpool> mListOfSpools;
 	
 

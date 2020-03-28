@@ -26,7 +26,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JSlider;
 import javax.swing.JScrollPane;
 
-public class FrontPage  {
+public class View  {
 	
     private JFrame mWindow;
     private JPanel mContentPane;
@@ -41,13 +41,13 @@ public class FrontPage  {
     private JButton mBtnAddNewSpool;
     private JComboBox mComboBoxMaterial;
 
-    public FrontPage() {
+    public View() {
         initialize();
     }
 
     private void initialize() {
     	mWindow = new JFrame();
-    	mWindow.setBounds(100, 100, 600, 400);
+    	mWindow.setBounds(100, 100, 1000, 1000);
     	mWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	
     	mContentPane = new JPanel();
@@ -57,7 +57,7 @@ public class FrontPage  {
     	mContentPane.setLayout(null);
     	
     	JPanel panel = new JPanel();
-    	panel.setBounds(248, 45, 195, 318);
+    	panel.setBounds(248, 45, 651, 719);
     	mContentPane.add(panel);
     	
     	JScrollPane scrollPane = new JScrollPane();
@@ -148,7 +148,6 @@ public class FrontPage  {
     	mtextBedTemp.setColumns(10);
     	mtextBedTemp.setBounds(83, 309, 106, 20);
     	mContentPane.add(mtextBedTemp);
-    	mWindow.setUndecorated(true);
     	mWindow.setLocationRelativeTo(null);
     	
     }
