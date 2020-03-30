@@ -15,8 +15,8 @@ import javax.swing.JTable;
 
 public class MainWindow {
 
-	private JFrame mframe;
-	private JTable mtable_1;
+	private JFrame Mframe;
+	private JTable RegalTable;
 
 	/**
 	 * Launch the application.
@@ -26,7 +26,7 @@ public class MainWindow {
 			public void run() {
 				try {
 					MainWindow window = new MainWindow();
-					window.mframe.setVisible(true);
+					window.Mframe.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 
@@ -46,60 +46,59 @@ public class MainWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		mframe = new JFrame();
-		mframe.setBounds(100, 100, 1148, 740);
-		mframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Mframe = new JFrame();
+		Mframe.setBounds(100, 100, 1148, 740);
+		Mframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JMenuBar menuBar = new JMenuBar();
-		mframe.setJMenuBar(menuBar);
+		JMenuBar MenuBar = new JMenuBar();
+		Mframe.setJMenuBar(MenuBar);
 
-		JMenu mnDatei = new JMenu("Datei");
-		menuBar.add(mnDatei);
+		JMenu MenuDatei = new JMenu("Datei");
+		MenuBar.add(MenuDatei);
 
-		JMenuItem mntmNeuFilament = new JMenuItem("Neues Filament...");
-		mnDatei.add(mntmNeuFilament);
+		JMenuItem MenuItemNeuFilament = new JMenuItem("Neues Filament...");
+		MenuDatei.add(MenuItemNeuFilament);
 
-		JMenuItem mntmNeuProjekt = new JMenuItem("Neues Projekt...");
-		mnDatei.add(mntmNeuProjekt);
+		JMenuItem MenuItemNeuProjekt = new JMenuItem("Neues Projekt...");
+		MenuDatei.add(MenuItemNeuProjekt);
 
-		JMenuItem mntmNeuPrint = new JMenuItem("Neuer Print...");
-		mnDatei.add(mntmNeuPrint);
+		JMenuItem MenuItemNeuPrint = new JMenuItem("Neuer Print...");
+		MenuDatei.add(MenuItemNeuPrint);
 
-		JMenu mnBearbeiten = new JMenu("Bearbeiten");
-		menuBar.add(mnBearbeiten);
+		JMenu MenuBearbeiten = new JMenu("Bearbeiten");
+		MenuBar.add(MenuBearbeiten);
 
-		JMenuItem mntmEinstellungen = new JMenuItem("Einstellungen");
-		menuBar.add(mntmEinstellungen);
+		JMenuItem MenuItemEinstellungen = new JMenuItem("Einstellungen");
+		MenuBar.add(MenuItemEinstellungen);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		mframe.getContentPane().add(tabbedPane, "cell 0 0,grow");
+		Mframe.getContentPane().add(tabbedPane, "cell 0 0,grow");
 
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Regal", null, panel, null);
 		panel.setLayout(null);
 
-		mtable_1 = new JTable();
-		mtable_1.setBounds(41, 48, 1012, 378);
-		panel.add(mtable_1);
+		RegalTable = new JTable();
+		RegalTable.setBounds(41, 48, 1012, 378);
+		panel.add(RegalTable);
 
-		JButton btnNeuFilament = new JButton("Neues Filament...");
-		btnNeuFilament.setBounds(94, 450, 160, 29);
-		panel.add(btnNeuFilament);
+		JButton ButtonNeuFilament = new JButton("Neues Filament...");
+		ButtonNeuFilament.setBounds(94, 450, 160, 29);
+		panel.add(ButtonNeuFilament);
 
-		JButton btnNeuPrint = new JButton("Neuer Print...");
-		btnNeuPrint.addActionListener(new ActionListener() {
+		JButton ButtonNeuPrint = new JButton("Neuer Print...");
+		ButtonNeuPrint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNeuPrint.setBounds(303, 450, 160, 29);
-		panel.add(btnNeuPrint);
+		ButtonNeuPrint.setBounds(303, 450, 160, 29);
+		panel.add(ButtonNeuPrint);
 
-		JTabbedPane tabPrints = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addTab("Prints", null, tabPrints, null);
+		JTabbedPane TabPrints = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addTab("Prints", null, TabPrints, null);
 
-		JTabbedPane tabProjekte = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addTab("Projekte", null, tabProjekte, null);
+		JTabbedPane TabProjekte = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addTab("Projekte", null, TabProjekte, null);
 
 	}
-
 }
