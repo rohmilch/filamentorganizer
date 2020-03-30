@@ -1,17 +1,41 @@
 package filamentorganizer.logik;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity(name = "filamentspool")
 public class FilamentSpool {
 
+	@Id
+	@GeneratedValue
+	private int mIndex;
+
+	@Column
 	private int mLength;
+	@Column
 	private int mTotalWeigth;
+	@Column
 	private String mColour;
+	@Column
 	private String mName;
+	@Column
 	private String mManufacturer;
+	@Column
 	private Material mMaterial;
-	private double mDiameter; // egal?
+	@Column
+	private double mDiameter;
+	@Column
 	private double mPrice;
+	@Column(nullable = true)
 	private int mIdealNoozleTemp;
-	private int mIdealBedTemp;
+	@Column(nullable = true)
+	int mIdealBedTemp;
+
+	public FilamentSpool() {
+		// Datenbank braucht das
+	}
 
 	public FilamentSpool(int pLength, int pTotalWeigth, String pColour, String pName, String pManufacturer,
 			Material pMaterial, double pDiameter, double pPrice, int pIdealNoozleTemp, int pIdealBedTemp) {

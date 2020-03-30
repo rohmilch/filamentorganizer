@@ -101,4 +101,5 @@ public class MainWindow {
 		tabbedPane.addTab("Projekte", null, tabProjekte, null);
 
 	}
+
 }
