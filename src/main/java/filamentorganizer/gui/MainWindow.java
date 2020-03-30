@@ -1,4 +1,5 @@
 package filamentorganizer.gui;
+
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,8 +12,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-
-import net.miginfocom.swing.MigLayout;
 
 public class MainWindow {
 
@@ -71,7 +70,6 @@ public class MainWindow {
 
 		JMenuItem mntmEinstellungen = new JMenuItem("Einstellungen");
 		menuBar.add(mntmEinstellungen);
-		mframe.getContentPane().setLayout(new MigLayout("", "[grow]", "[grow]"));
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		mframe.getContentPane().add(tabbedPane, "cell 0 0,grow");
