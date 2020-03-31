@@ -17,6 +17,79 @@ public class MainWindow {
 
 	private JFrame Mframe;
 	private JTable RegalTable;
+	private JMenuBar MenuBar;
+	private JMenu MenuDatei;
+	private JMenuItem MenuItemNeuFilament;
+	private JMenuItem MenuItemNeuProjekt;
+	private JMenuItem MenuItemNeuPrint;
+	private JMenu MenuBearbeiten;
+	private JMenuItem MenuItemEinstellungen;
+	private JTabbedPane TabbedPane;
+	private JPanel Panel;
+	private JButton ButtonNeuFilament;
+	private JButton ButtonNeuPrint;
+	private JTabbedPane TabPrints;
+	private JTabbedPane TabProjekte;
+
+	public JFrame getMframe() {
+		return Mframe;
+	}
+
+	public JTable getRegalTable() {
+		return RegalTable;
+	}
+
+	public JMenuBar getMenuBar() {
+		return MenuBar;
+	}
+
+	public JMenu getMenuDatei() {
+		return MenuDatei;
+	}
+
+	public JMenuItem getMenuItemNeuFilament() {
+		return MenuItemNeuFilament;
+	}
+
+	public JMenuItem getMenuItemNeuProjekt() {
+		return MenuItemNeuProjekt;
+	}
+
+	public JMenuItem getMenuItemNeuPrint() {
+		return MenuItemNeuPrint;
+	}
+
+	public JMenu getMenuBearbeiten() {
+		return MenuBearbeiten;
+	}
+
+	public JMenuItem getMenuItemEinstellungen() {
+		return MenuItemEinstellungen;
+	}
+
+	public JTabbedPane getTabbedPane() {
+		return TabbedPane;
+	}
+
+	public JPanel getPanel() {
+		return Panel;
+	}
+
+	public JButton getButtonNeuFilament() {
+		return ButtonNeuFilament;
+	}
+
+	public JButton getButtonNeuPrint() {
+		return ButtonNeuPrint;
+	}
+
+	public JTabbedPane getTabPrints() {
+		return TabPrints;
+	}
+
+	public JTabbedPane getTabProjekte() {
+		return TabProjekte;
+	}
 
 	/**
 	 * Launch the application.
@@ -50,43 +123,45 @@ public class MainWindow {
 		Mframe.setBounds(100, 100, 1148, 740);
 		Mframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JMenuBar MenuBar = new JMenuBar();
+		/** MUSTER */
+
+		MenuBar = new JMenuBar();
 		Mframe.setJMenuBar(MenuBar);
 
-		JMenu MenuDatei = new JMenu("Datei");
+		MenuDatei = new JMenu("Datei");
 		MenuBar.add(MenuDatei);
 
-		JMenuItem MenuItemNeuFilament = new JMenuItem("Neues Filament...");
+		MenuItemNeuFilament = new JMenuItem("Neues Filament...");
 		MenuDatei.add(MenuItemNeuFilament);
 
-		JMenuItem MenuItemNeuProjekt = new JMenuItem("Neues Projekt...");
+		MenuItemNeuProjekt = new JMenuItem("Neues Projekt...");
 		MenuDatei.add(MenuItemNeuProjekt);
 
-		JMenuItem MenuItemNeuPrint = new JMenuItem("Neuer Print...");
+		MenuItemNeuPrint = new JMenuItem("Neuer Print...");
 		MenuDatei.add(MenuItemNeuPrint);
 
-		JMenu MenuBearbeiten = new JMenu("Bearbeiten");
+		MenuBearbeiten = new JMenu("Bearbeiten");
 		MenuBar.add(MenuBearbeiten);
 
-		JMenuItem MenuItemEinstellungen = new JMenuItem("Einstellungen");
+		MenuItemEinstellungen = new JMenuItem("Einstellungen");
 		MenuBar.add(MenuItemEinstellungen);
 
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		Mframe.getContentPane().add(tabbedPane, "cell 0 0,grow");
+		TabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		Mframe.getContentPane().add(TabbedPane, "cell 0 0,grow");
 
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Regal", null, panel, null);
-		panel.setLayout(null);
+		Panel = new JPanel();
+		tabbedPane.addTab("Regal", null, Panel, null);
+		Panel.setLayout(null);
 
 		RegalTable = new JTable();
 		RegalTable.setBounds(41, 48, 1012, 378);
 		panel.add(RegalTable);
 
-		JButton ButtonNeuFilament = new JButton("Neues Filament...");
+		ButtonNeuFilament = new JButton("Neues Filament...");
 		ButtonNeuFilament.setBounds(94, 450, 160, 29);
 		panel.add(ButtonNeuFilament);
 
-		JButton ButtonNeuPrint = new JButton("Neuer Print...");
+		ButtonNeuPrint = new JButton("Neuer Print...");
 		ButtonNeuPrint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -94,10 +169,10 @@ public class MainWindow {
 		ButtonNeuPrint.setBounds(303, 450, 160, 29);
 		panel.add(ButtonNeuPrint);
 
-		JTabbedPane TabPrints = new JTabbedPane(JTabbedPane.TOP);
+		TabPrints = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Prints", null, TabPrints, null);
 
-		JTabbedPane TabProjekte = new JTabbedPane(JTabbedPane.TOP);
+		TabProjekte = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("Projekte", null, TabProjekte, null);
 
 	}
