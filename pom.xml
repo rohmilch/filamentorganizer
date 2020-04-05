@@ -6,8 +6,10 @@
 	<artifactId>filamentorganizer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-
-
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
 	<dependencies>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
@@ -19,6 +21,23 @@
 			<artifactId>ormlite-core</artifactId>
 			<version>5.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>13</version>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>0.0.3</version>
+				<configuration>
+					<mainClass>Start</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

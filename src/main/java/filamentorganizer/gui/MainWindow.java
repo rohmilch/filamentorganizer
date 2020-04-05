@@ -1,8 +1,6 @@
 package filamentorganizer.gui;
 
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -99,7 +97,7 @@ public class MainWindow {
 			public void run() {
 				try {
 					MainWindow window = new MainWindow();
-					window.Mframe.setVisible(true);
+					window.getMframe().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 
@@ -150,30 +148,30 @@ public class MainWindow {
 		Mframe.getContentPane().add(TabbedPane, "cell 0 0,grow");
 
 		Panel = new JPanel();
-		tabbedPane.addTab("Regal", null, Panel, null);
+		TabbedPane.addTab("Regal", null, Panel, null);
 		Panel.setLayout(null);
 
 		RegalTable = new JTable();
 		RegalTable.setBounds(41, 48, 1012, 378);
-		panel.add(RegalTable);
+		Panel.add(RegalTable);
 
 		ButtonNeuFilament = new JButton("Neues Filament...");
 		ButtonNeuFilament.setBounds(94, 450, 160, 29);
-		panel.add(ButtonNeuFilament);
+		Panel.add(ButtonNeuFilament);
 
 		ButtonNeuPrint = new JButton("Neuer Print...");
-		ButtonNeuPrint.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+//		ButtonNeuPrint.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//			}
+//		});
 		ButtonNeuPrint.setBounds(303, 450, 160, 29);
-		panel.add(ButtonNeuPrint);
+		Panel.add(ButtonNeuPrint);
 
 		TabPrints = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addTab("Prints", null, TabPrints, null);
+		TabbedPane.addTab("Prints", null, TabPrints, null);
 
 		TabProjekte = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addTab("Projekte", null, TabProjekte, null);
+		TabbedPane.addTab("Projekte", null, TabProjekte, null);
 
 	}
 }
