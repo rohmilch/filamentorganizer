@@ -24,13 +24,14 @@ public class Controller implements Initializable {
 	@FXML
 	private TableColumn<FilamentSpool, String> LengthCol;
 	@FXML
-	private TableColumn<FilamentSpool, String> WeigthCol;
+	private TableColumn<FilamentSpool, String> WeightCol;
 	@FXML
 	private TableColumn<FilamentSpool, String> ColourCol;
 	@FXML
 	private TableColumn<FilamentSpool, String> MaterialCol;
 	@FXML
-	private TableColumn<FilamentSpool, String> PrintTempCol;
+	private TableColumn<FilamentSpool, String> NoozleTempCol;
+	private TableColumn<FilamentSpool, String> BedTempCol;
 
 	private Shelf mShelf;
 
@@ -38,21 +39,24 @@ public class Controller implements Initializable {
 
 	}
 
-	public Controller(Shelf pModel) {
-		super();
-		mShelf = pModel;
-//		initListener();
-
-//		mView.getMtableSpoolShelf().setModel(mShelf);
-	}
-
-//	@Override
 	public void initialize(URL pArg0, ResourceBundle pArg1) {
 		ObservableList<FilamentSpool> lItems = tableView.getItems();
-
 		NameCol = new TableColumn<FilamentSpool, String>("Name");
-		tableView.getColumns().addAll(NameCol);
+		LengthCol = new TableColumn<FilamentSpool, String>("Length");
+		WeightCol = new TableColumn<FilamentSpool, String>("Weight");
+		ColourCol = new TableColumn<FilamentSpool, String>("Colour");
+		MaterialCol = new TableColumn<FilamentSpool, String>("Material");
+		NoozleTempCol = new TableColumn<FilamentSpool, String>("Noozle Temp");
+		BedTempCol = new TableColumn<FilamentSpool, String>("Bed Temp");
+
+		tableView.getColumns().addAll(NameCol, LengthCol, WeightCol, ColourCol, MaterialCol, NoozleTempCol, BedTempCol);
 		NameCol.setCellValueFactory(new PropertyValueFactory<FilamentSpool, String>("name"));
+		LengthCol.setCellValueFactory(new PropertyValueFactory<FilamentSpool, String>("length"));
+		WeightCol.setCellValueFactory(new PropertyValueFactory<FilamentSpool, String>("weight"));
+		ColourCol.setCellValueFactory(new PropertyValueFactory<FilamentSpool, String>("colour"));
+		MaterialCol.setCellValueFactory(new PropertyValueFactory<FilamentSpool, String>("material"));
+		NoozleTempCol.setCellValueFactory(new PropertyValueFactory<FilamentSpool, String>("IdealNoozleTemp"));
+		BedTempCol.setCellValueFactory(new PropertyValueFactory<FilamentSpool, String>("IdealBedTemp"));
 
 		lItems.addAll(parseFilamentList());
 
@@ -61,10 +65,9 @@ public class Controller implements Initializable {
 	private List<FilamentSpool> parseFilamentList() {
 
 		List<FilamentSpool> lBsp = new ArrayList<FilamentSpool>();
-		FilamentSpool lBspFilament = new FilamentSpool(100, 100, "gr�n", "Beispiel", "Beispiel", Material.PLA, 1.75, 20,
-				200, 200);
+		FilamentSpool lBspFilament = new FilamentSpool(100, 100, "gruen", "Beispiel", "Beispiel", Material.PLA, 1.75,
+				20, 200, 200);
 		lBsp.add(lBspFilament);
-// TODO Auto-generated method stub1
 		return lBsp;
 	}
 

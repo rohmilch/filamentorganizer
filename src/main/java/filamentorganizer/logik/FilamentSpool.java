@@ -15,7 +15,7 @@ public class FilamentSpool {
 	@Column
 	private int mLength;
 	@Column
-	private int mTotalWeigth;
+	private int mWeight;
 	@Column
 	private String mColour;
 	@Column
@@ -37,10 +37,10 @@ public class FilamentSpool {
 		// Datenbank braucht das
 	}
 
-	public FilamentSpool(int pLength, int pTotalWeigth, String pColour, String pName, String pManufacturer,
+	public FilamentSpool(int pLength, int pWeight, String pColour, String pName, String pManufacturer,
 			Material pMaterial, double pDiameter, double pPrice, int pIdealNoozleTemp, int pIdealBedTemp) {
 		mLength = pLength;
-		mTotalWeigth = pTotalWeigth;
+		mWeight = pWeight;
 		mColour = pColour;
 		mName = pName;
 		mManufacturer = pManufacturer;
@@ -68,12 +68,12 @@ public class FilamentSpool {
 		mLength = pLength;
 	}
 
-	public int getTotalWeigth() {
-		return mTotalWeigth;
+	public int getWeight() {
+		return mWeight;
 	}
 
 	public void setTotalWeigth(int pTotalWeigth) {
-		mTotalWeigth = pTotalWeigth;
+		mWeight = pTotalWeigth;
 	}
 
 	public String getColour() {
