@@ -46,7 +46,7 @@ public class Controller implements Initializable {
 //		mView.getMtableSpoolShelf().setModel(mShelf);
 	}
 
-	@Override
+//	@Override
 	public void initialize(URL pArg0, ResourceBundle pArg1) {
 		ObservableList<FilamentSpool> lItems = tableView.getItems();
 
@@ -61,7 +61,7 @@ public class Controller implements Initializable {
 	private List<FilamentSpool> parseFilamentList() {
 
 		List<FilamentSpool> lBsp = new ArrayList<FilamentSpool>();
-		FilamentSpool lBspFilament = new FilamentSpool(100, 100, "grün", "Beispiel", "Beispiel", Material.PLA, 1.75, 20,
+		FilamentSpool lBspFilament = new FilamentSpool(100, 100, "grï¿½n", "Beispiel", "Beispiel", Material.PLA, 1.75, 20,
 				200, 200);
 		lBsp.add(lBspFilament);
 // TODO Auto-generated method stub1
@@ -89,7 +89,7 @@ public class Controller implements Initializable {
 //							lPrice, lNoozleTemp, lBedTemp);
 //
 //					mShelf.addRow(new Object[] { lName, String.valueOf(lLength) + " m", String.valueOf(lWeigth) + " g",
-//							lColour, lMaterial, lNoozleTemp + " °C / " + lBedTemp + " °C" });
+//							lColour, lMaterial, lNoozleTemp + " ï¿½C / " + lBedTemp + " ï¿½C" });
 //
 //				}
 //
