@@ -6,10 +6,10 @@
 	<artifactId>filamentorganizer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
@@ -26,6 +26,13 @@
 			<artifactId>javafx-controls</artifactId>
 			<version>13</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.j256.ormlite</groupId>
+			<artifactId>ormlite-jdbc</artifactId>
+			<version>4.48</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
