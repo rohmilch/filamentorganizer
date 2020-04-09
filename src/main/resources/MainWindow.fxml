@@ -9,7 +9,7 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0"
 	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="filamentorganizer.binder.Controller">
+	fx:controller="filamentorganizer.controller.Controller">
 	<children>
 		<MenuBar VBox.vgrow="NEVER">
 			<menus>
@@ -61,13 +61,15 @@
 								<AnchorPane minHeight="0.0" minWidth="0.0"
 									prefHeight="206.0" prefWidth="208.0">
 									<children>
-										<TableView fx:id="tableView" layoutX="1.0"
+										<TableView fx:id="mTableViewShelf" layoutX="1.0"
 											prefHeight="185.0" prefWidth="640.0">
 										</TableView>
-										<Button layoutX="151.0" layoutY="206.0"
-											mnemonicParsing="false" text="Filament hinzufügen" />
-										<Button layoutX="151.0" layoutY="247.0"
-											mnemonicParsing="false" text="Verbrauch hinzufügen" />
+										<Button fx:id="mAddFilamentButton" layoutX="151.0"
+											layoutY="206.0" mnemonicParsing="false"
+											text="Filament hinzufügen" />
+										<Button fx:id="mAddUseButton" layoutX="151.0"
+											layoutY="247.0" mnemonicParsing="false"
+											text="Verbrauch hinzufügen" />
 									</children>
 								</AnchorPane>
 							</content>
@@ -77,11 +79,14 @@
 								<AnchorPane minHeight="0.0" minWidth="0.0"
 									prefHeight="180.0" prefWidth="200.0">
 									<children>
-										<Button layoutX="154.0" layoutY="244.0"
-											mnemonicParsing="false" text="Projekt hinzufügen" />
-										<Button layoutX="154.0" layoutY="278.0"
-											mnemonicParsing="false" text="Verbrauch hinzufügen" />
-										<TableView prefHeight="200.0" prefWidth="640.0">
+										<Button fx:id="mAddProjectButton" layoutX="154.0"
+											layoutY="244.0" mnemonicParsing="false"
+											text="Projekt hinzufügen" />
+										<Button fx:id="mAddUseButton" layoutX="154.0"
+											layoutY="278.0" mnemonicParsing="false"
+											text="Verbrauch hinzufügen" />
+										<TableView fx:id="mTableViewProjects"
+											prefHeight="200.0" prefWidth="640.0">
 											<columns>
 												<TableColumn prefWidth="75.0" text="C1" />
 												<TableColumn prefWidth="75.0" text="C2" />

@@ -1,12 +1,14 @@
 package filamentorganizer.data;
 
-import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
 
 import filamentorganizer.general.Constants;
 import filamentorganizer.logik.FilamentSpool;
@@ -28,35 +30,78 @@ public class DatabaseConnection {
 		return connectionSource;
 	}
 
-	public static void createFilament(FilamentSpool pFilament) {
+	public static void addFilamentToDatabase(FilamentSpool pFilament) {
 		ConnectionSource lConnect = DatabaseConnection.getConnect();
 		Dao<FilamentSpool, String> lFilamentDAO;
 		try {
-			lFilamentDAO = DaoManager.createDao(lConnect, FilamentSpool.class);
+			lFilamentDAO = getDAOFilament(lConnect);
+
 			lFilamentDAO.create(pFilament);
 			lConnect.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 
-	public static void createProject(Project pProject) {
+	public static void addProjectToDatabase(Project pProject) {
 		ConnectionSource lConnect = DatabaseConnection.getConnect();
 		Dao<Project, String> lProjectDAO;
 		try {
-			lProjectDAO = DaoManager.createDao(lConnect, Project.class);
+			lProjectDAO = getDAOProject(lConnect);
 			lProjectDAO.create(pProject);
 			lConnect.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		}
+	}
+
+	public static List<FilamentSpool> getFilamentListFromDatabase() {
+		ConnectionSource lConnect = DatabaseConnection.getConnect();
+		Dao<FilamentSpool, String> lFilamentDAO;
+		List<FilamentSpool> lListOFAllFilament = new ArrayList<FilamentSpool>();
+		try {
+			lFilamentDAO = getDAOFilament(lConnect);
+			lListOFAllFilament = lFilamentDAO.queryForAll();
+			lConnect.close();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return lListOFAllFilament;
+	}
+
+	private static Dao<FilamentSpool, String> getDAOFilament(ConnectionSource lConnect) throws SQLException {
+		Dao<FilamentSpool, String> lFilamentDAO;
+		lFilamentDAO = DaoManager.createDao(lConnect, FilamentSpool.class);
+		if (!lFilamentDAO.isTableExists()) {
+			TableUtils.createTableIfNotExists(lConnect, FilamentSpool.class);
+		}
+		return lFilamentDAO;
+	}
+
+	public static List<Project> getProjectListFromDatabase() {
+		ConnectionSource lConnect = DatabaseConnection.getConnect();
+		Dao<Project, String> lProjectDAO;
+		List<Project> lListOFAllFilament = new ArrayList<Project>();
+		try {
+			lProjectDAO = getDAOProject(lConnect);
+			lListOFAllFilament = lProjectDAO.queryForAll();
+			lConnect.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lListOFAllFilament;
+	}
+
+	private static Dao<Project, String> getDAOProject(ConnectionSource lConnect) throws SQLException {
+		Dao<Project, String> lProjectDAO;
+		lProjectDAO = DaoManager.createDao(lConnect, Project.class);
+		if (!lProjectDAO.isTableExists()) {
+			TableUtils.createTableIfNotExists(lConnect, Project.class);
+		}
+		return lProjectDAO;
 	}
 }
