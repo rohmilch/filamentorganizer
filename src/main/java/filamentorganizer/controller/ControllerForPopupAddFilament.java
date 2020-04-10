@@ -10,22 +10,9 @@ import javafx.stage.Stage;
 
 public class ControllerForPopupAddFilament extends AbstractController implements Initializable {
 
-//	@FXML
-//	private TextField usernameTF;
-//	@FXML
-//	private PasswordField passwordPF;
-//	@FXML
-//	private Button connectBtn;
 	private Stage stage = null;
-//	private HashMap<String, Object> result = new HashMap<String, Object>();
 
 	public void initialize(URL url, ResourceBundle rb) {
-//		connectBtn.setOnAction((event) -> {
-//			result.clear();
-//			result.put("username", usernameTF.getText());
-//			result.put("password", passwordPF.getText());
-//			closeStage();
-//		});
 
 	}
 

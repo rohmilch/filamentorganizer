@@ -6,5 +6,6 @@ public class Constants {
 	public static final String FXML_MAIN = "/MainWindow.fxml";
 	public static final String FXML_POPUP_ADD_FILAMENT = "/PopupAddFilament.fxml";
 	public static final String FXML_POPUP_ADD_USAGE = "/PopupAddUsage.fxml";
+	public static final String FXML_POPUP_ADD_PROJECT = "/PopupAddProject.fxml";
 
 }

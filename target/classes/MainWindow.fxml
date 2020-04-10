@@ -67,10 +67,6 @@
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 									<children>
 										<TableView fx:id="mTableViewProjects" prefHeight="200.0" prefWidth="640.0">
-											<columns>
-												<TableColumn prefWidth="75.0" text="C1" />
-												<TableColumn prefWidth="75.0" text="C2" />
-											</columns>
 										</TableView>
 									</children>
 								</AnchorPane>

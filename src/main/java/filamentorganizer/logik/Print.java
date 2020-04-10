@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "prints")
 public class Print {
@@ -18,11 +20,13 @@ public class Print {
 	private int mWeight;
 	@Column
 	private String mNote;
-//	@Column
+	@ManyToOne
+	@JoinColumn(name = "projects")
 	private Project mProject;
 	@Column
 	private String mName;
-	@Column
+	@ManyToOne
+	@JoinColumn(name = "filamentspools")
 	private FilamentSpool mFilament;
 
 	public Print(int pLength, int pWeight, String pNote, Project pProject, String pName, FilamentSpool pFilament) {
@@ -34,6 +38,10 @@ public class Print {
 		mName = pName;
 		mFilament = pFilament;
 	}
+
+	public Print() {
+	}
+	// DB
 
 	public int getIndex() {
 		return mIndex;

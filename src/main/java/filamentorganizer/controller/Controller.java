@@ -30,13 +30,6 @@ public class Controller extends AbstractController implements Initializable {
 	@FXML
 	private TableView<FilamentSpool> mTableViewShelf;
 
-	private TableColumn<FilamentSpool, String> mNameShelfColumn;
-	private TableColumn<FilamentSpool, String> mLengthShelfColumn;
-	private TableColumn<FilamentSpool, String> mWeightShelfColumn;
-	private TableColumn<FilamentSpool, String> mColourShelfColumn;
-	private TableColumn<FilamentSpool, String> mMaterialShelfColumn;
-	private TableColumn<FilamentSpool, String> mNoozleTempShelfColumn;
-	private TableColumn<FilamentSpool, String> mBedTempShelfColumn;
 	@FXML
 	private TableView<Project> mTableViewProjects;
 
@@ -57,24 +50,28 @@ public class Controller extends AbstractController implements Initializable {
 
 //wird automatisch gerufen
 		initShelf();
-//		initProjects();
+		initProjects();
 		initListener();
+		fillAndRefreshTables();
 	}
 
 	private void initProjects() {
 		ObservableList<Project> lItems = mTableViewProjects.getItems();
-
+		TableColumn<Project, String> mNameShelfColumn = new TableColumn<Project, String>("Name");
+		mTableViewProjects.getColumns().addAll(mNameShelfColumn);
+		mNameShelfColumn.setCellValueFactory(new PropertyValueFactory<Project, String>("name"));
 	}
 
 	private void initShelf() {
 		ObservableList<FilamentSpool> lItems = mTableViewShelf.getItems();
-		mNameShelfColumn = new TableColumn<FilamentSpool, String>("Name");
-		mLengthShelfColumn = new TableColumn<FilamentSpool, String>("Length");
-		mWeightShelfColumn = new TableColumn<FilamentSpool, String>("Weight");
-		mColourShelfColumn = new TableColumn<FilamentSpool, String>("Colour");
-		mMaterialShelfColumn = new TableColumn<FilamentSpool, String>("Material");
-		mNoozleTempShelfColumn = new TableColumn<FilamentSpool, String>("Noozle Temp");
-		mBedTempShelfColumn = new TableColumn<FilamentSpool, String>("Bed Temp");
+		TableColumn<FilamentSpool, String> mNameShelfColumn = new TableColumn<FilamentSpool, String>("Name");
+		TableColumn<FilamentSpool, String> mLengthShelfColumn = new TableColumn<FilamentSpool, String>("Length");
+		TableColumn<FilamentSpool, String> mWeightShelfColumn = new TableColumn<FilamentSpool, String>("Weight");
+		TableColumn<FilamentSpool, String> mColourShelfColumn = new TableColumn<FilamentSpool, String>("Colour");
+		TableColumn<FilamentSpool, String> mMaterialShelfColumn = new TableColumn<FilamentSpool, String>("Material");
+		TableColumn<FilamentSpool, String> mNoozleTempShelfColumn = new TableColumn<FilamentSpool, String>(
+				"Noozle Temp");
+		TableColumn<FilamentSpool, String> mBedTempShelfColumn = new TableColumn<FilamentSpool, String>("Bed Temp");
 
 		mTableViewShelf.getColumns().addAll(mNameShelfColumn, mLengthShelfColumn, mWeightShelfColumn,
 				mColourShelfColumn, mMaterialShelfColumn, mNoozleTempShelfColumn, mBedTempShelfColumn);
@@ -85,25 +82,22 @@ public class Controller extends AbstractController implements Initializable {
 		mMaterialShelfColumn.setCellValueFactory(new PropertyValueFactory<FilamentSpool, String>("material"));
 		mNoozleTempShelfColumn.setCellValueFactory(new PropertyValueFactory<FilamentSpool, String>("IdealNoozleTemp"));
 		mBedTempShelfColumn.setCellValueFactory(new PropertyValueFactory<FilamentSpool, String>("IdealBedTemp"));
-		fillShelfFromDatabase();
 	}
 
-	private void fillShelfFromDatabase() {
+	private void fillAndRefreshTables() {
 		mTableViewShelf.getItems().clear();
+		mTableViewProjects.getItems().clear();
 		List<FilamentSpool> lDatabanklistFilament = DatabaseConnection.getFilamentListFromDatabase();
 		if (lDatabanklistFilament != null) {
 			mTableViewShelf.getItems().addAll(lDatabanklistFilament);
 		}
-		mTableViewShelf.getSelectionModel().selectFirst();
-
-	}
-
-	private void fillProjectFromDatabase() {
-		mTableViewProjects.getItems().clear();
-		List<Project> lProjectListFromDatabase = DatabaseConnection.getProjectListFromDatabase();
-		if (lProjectListFromDatabase != null) {
-			mTableViewProjects.getItems().addAll(lProjectListFromDatabase);
+		List<Project> lDatabanklistProject = DatabaseConnection.getProjectListFromDatabase();
+		if (lDatabanklistProject != null) {
+			mTableViewProjects.getItems().addAll(lDatabanklistProject);
 		}
+		mTableViewShelf.getSelectionModel().selectFirst();
+		mTableViewProjects.getSelectionModel().selectFirst();
+
 	}
 
 	public void initListener() {
@@ -114,7 +108,7 @@ public class Controller extends AbstractController implements Initializable {
 				showPopup(Constants.FXML_POPUP_ADD_FILAMENT);
 				FilamentSpool lResult = popupController.getResult();
 				DatabaseConnection.addFilamentToDatabase(lResult);
-				fillShelfFromDatabase();
+				fillAndRefreshTables();
 			}
 
 		});
@@ -122,10 +116,11 @@ public class Controller extends AbstractController implements Initializable {
 		mAddProjectButton.setOnMouseClicked(new EventHandler<Event>() {
 
 			public void handle(Event pEvent) {
-
-				System.out.println("click");
-				// TODO Auto-generated method stub
-
+				ControllerForAddingProject popupController = new ControllerForAddingProject();
+				showPopup(Constants.FXML_POPUP_ADD_PROJECT);
+				Project lResult = popupController.getResult();
+				DatabaseConnection.addProjectToDatabase(lResult);
+				fillAndRefreshTables();
 			}
 		});
 		mAddUseButton.setOnMouseClicked(new EventHandler<Event>() {
@@ -142,7 +137,7 @@ public class Controller extends AbstractController implements Initializable {
 				lSelectionFilament.setWeigth(lNewWeight);
 				lSelectionFilament.setLength(lNewLength);
 				DatabaseConnection.addPrintToDatabaseAndUpdateFilament(lResult, lSelectionFilament);
-				fillShelfFromDatabase();
+				fillAndRefreshTables();
 			}
 		});
 

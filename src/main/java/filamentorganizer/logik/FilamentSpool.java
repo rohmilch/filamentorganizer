@@ -1,9 +1,12 @@
 package filamentorganizer.logik;
 
+import java.util.ArrayList;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity(name = "filamentspools")
 public class FilamentSpool {
@@ -31,7 +34,9 @@ public class FilamentSpool {
 	@Column(nullable = true)
 	private int mIdealNoozleTemp;
 	@Column(nullable = true)
-	int mIdealBedTemp;
+	private int mIdealBedTemp;
+	@OneToMany(mappedBy = "prints")
+	private ArrayList<Print> mListOfPrints;
 
 	public FilamentSpool() {
 		// Datenbank braucht das
@@ -147,6 +152,14 @@ public class FilamentSpool {
 
 	public void setIdealBedTemp(int pIdealBedTemp) {
 		mIdealBedTemp = pIdealBedTemp;
+	}
+
+	public ArrayList<Print> getListOfPrints() {
+		return mListOfPrints;
+	}
+
+	public void setListOfPrints(ArrayList<Print> pListOfPrints) {
+		mListOfPrints = pListOfPrints;
 	}
 
 }

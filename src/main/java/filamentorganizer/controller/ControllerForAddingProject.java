@@ -9,7 +9,7 @@ import filamentorganizer.logik.Project;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 
-public class ControllerForAddingUsage extends AbstractController implements Initializable {
+public class ControllerForAddingProject extends AbstractController implements Initializable {
 
 	private Stage stage = null;
 
@@ -17,12 +17,12 @@ public class ControllerForAddingUsage extends AbstractController implements Init
 
 	}
 
-	public Print getResult(FilamentSpool pFilament) {
+	public Project getResult() {
 		Project lProject = new Project();
 		lProject.setName("TestProjectName");
-		Print lBspPrint = new Print(1, 1, "TestNote", lProject, "TestName", pFilament);
+		Print lBspPrint = new Print(1, 1, "TestNote", lProject, "TestName", new FilamentSpool());
 		lProject.getListOfPrints().add(lBspPrint);
-		return lBspPrint;
+		return lProject;
 	}
 
 	public void setStage(Stage stage) {

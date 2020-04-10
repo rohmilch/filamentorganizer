@@ -25,6 +25,10 @@ public class DatabaseConnection {
 		ConnectionSource connectionSource = null;
 		try {
 			connectionSource = new JdbcConnectionSource(Constants.DATABASE_URL);
+			TableUtils.createTableIfNotExists(connectionSource, FilamentSpool.class);
+			TableUtils.createTableIfNotExists(connectionSource, Project.class);
+			TableUtils.createTableIfNotExists(connectionSource, Print.class);
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -49,12 +53,15 @@ public class DatabaseConnection {
 		ConnectionSource lConnect = DatabaseConnection.getConnect();
 		Dao<FilamentSpool, String> lFilamentDAO;
 		Dao<Print, String> lPrintDAO;
+		Dao<Project, String> lProjectDAO;
 		try {
 			lFilamentDAO = getDAOFilament(lConnect);
 			lFilamentDAO.update(pFilament);
 
-//			lPrintDAO = getDAOPrint(lConnect);
-//			lPrintDAO.create(pPrint);
+			lPrintDAO = getDAOPrint(lConnect);
+			lPrintDAO.create(pPrint);
+			lProjectDAO = getDAOProject(lConnect);
+			lProjectDAO.update(pPrint.getProject());
 
 			lConnect.close();
 		} catch (SQLException e) {
@@ -91,24 +98,6 @@ public class DatabaseConnection {
 		return lListOFAllFilament;
 	}
 
-	private static Dao<FilamentSpool, String> getDAOFilament(ConnectionSource lConnect) throws SQLException {
-		Dao<FilamentSpool, String> lFilamentDAO;
-		lFilamentDAO = DaoManager.createDao(lConnect, FilamentSpool.class);
-		if (!lFilamentDAO.isTableExists()) {
-			TableUtils.createTableIfNotExists(lConnect, FilamentSpool.class);
-		}
-		return lFilamentDAO;
-	}
-
-	private static Dao<Print, String> getDAOPrint(ConnectionSource lConnect) throws SQLException {
-		Dao<Print, String> lPrintDAO;
-		lPrintDAO = DaoManager.createDao(lConnect, Print.class);
-		if (!lPrintDAO.isTableExists()) {
-			TableUtils.createTableIfNotExists(lConnect, Print.class);
-		}
-		return lPrintDAO;
-	}
-
 	public static List<Project> getProjectListFromDatabase() {
 		ConnectionSource lConnect = DatabaseConnection.getConnect();
 		Dao<Project, String> lProjectDAO;
@@ -124,12 +113,21 @@ public class DatabaseConnection {
 		return lListOFAllFilament;
 	}
 
+	private static Dao<FilamentSpool, String> getDAOFilament(ConnectionSource lConnect) throws SQLException {
+		Dao<FilamentSpool, String> lFilamentDAO;
+		lFilamentDAO = DaoManager.createDao(lConnect, FilamentSpool.class);
+		return lFilamentDAO;
+	}
+
+	private static Dao<Print, String> getDAOPrint(ConnectionSource lConnect) throws SQLException {
+		Dao<Print, String> lPrintDAO;
+		lPrintDAO = DaoManager.createDao(lConnect, Print.class);
+		return lPrintDAO;
+	}
+
 	private static Dao<Project, String> getDAOProject(ConnectionSource lConnect) throws SQLException {
 		Dao<Project, String> lProjectDAO;
 		lProjectDAO = DaoManager.createDao(lConnect, Project.class);
-		if (!lProjectDAO.isTableExists()) {
-			TableUtils.createTableIfNotExists(lConnect, Project.class);
-		}
 		return lProjectDAO;
 	}
 }
