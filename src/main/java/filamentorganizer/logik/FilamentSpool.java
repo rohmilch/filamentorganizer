@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity(name = "filamentspool")
+@Entity(name = "filamentspools")
 public class FilamentSpool {
 
 	@Id
@@ -72,8 +72,8 @@ public class FilamentSpool {
 		return mWeight;
 	}
 
-	public void setTotalWeigth(int pTotalWeigth) {
-		mWeight = pTotalWeigth;
+	public void setWeigth(int pWeigth) {
+		mWeight = pWeigth;
 	}
 
 	public String getColour() {

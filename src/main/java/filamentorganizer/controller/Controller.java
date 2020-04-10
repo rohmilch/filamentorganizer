@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import filamentorganizer.data.DatabaseConnection;
 import filamentorganizer.general.Constants;
 import filamentorganizer.logik.FilamentSpool;
+import filamentorganizer.logik.Print;
 import filamentorganizer.logik.Project;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -93,6 +94,8 @@ public class Controller extends AbstractController implements Initializable {
 		if (lDatabanklistFilament != null) {
 			mTableViewShelf.getItems().addAll(lDatabanklistFilament);
 		}
+		mTableViewShelf.getSelectionModel().selectFirst();
+
 	}
 
 	private void fillProjectFromDatabase() {
@@ -107,37 +110,19 @@ public class Controller extends AbstractController implements Initializable {
 		mAddFilamentButton.setOnMouseClicked(new EventHandler<Event>() {
 
 			public void handle(Event pEvent) {
-
 				ControllerForPopupAddFilament popupController = new ControllerForPopupAddFilament();
-				FXMLLoader loader = new FXMLLoader(mMainApp.getClass().getResource(Constants.FXML_POPUP_ADD_FILAMENT));
-				Parent lPopUp;
-				try {
-					lPopUp = loader.load();
-
-					Scene scene = new Scene(lPopUp);
-					// this is the popup stage
-					Stage popupStage = new Stage();
-					// Giving the popup controller access to the popup stage (to allow the
-					// controller to close the stage)
-					popupController.setStage(popupStage);
-					if (mMainApp != null) {
-						popupStage.initOwner(mMainApp.getPrimaryStage());
-					}
-					popupStage.initModality(Modality.WINDOW_MODAL);
-					popupStage.setScene(scene);
-					popupStage.showAndWait();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				showPopup(Constants.FXML_POPUP_ADD_FILAMENT);
 				FilamentSpool lResult = popupController.getResult();
 				DatabaseConnection.addFilamentToDatabase(lResult);
 				fillShelfFromDatabase();
 			}
+
 		});
 
 		mAddProjectButton.setOnMouseClicked(new EventHandler<Event>() {
 
 			public void handle(Event pEvent) {
+
 				System.out.println("click");
 				// TODO Auto-generated method stub
 
@@ -146,12 +131,37 @@ public class Controller extends AbstractController implements Initializable {
 		mAddUseButton.setOnMouseClicked(new EventHandler<Event>() {
 
 			public void handle(Event pEvent) {
-				System.out.println("click");
-				// TODO Auto-generated method stub
+				FilamentSpool lSelectionFilament = mTableViewShelf.getSelectionModel().getSelectedItem();
+				ControllerForAddingUsage popupController = new ControllerForAddingUsage();
 
+				showPopup(Constants.FXML_POPUP_ADD_USAGE);
+				Print lResult = popupController.getResult(lSelectionFilament);
+//checkbox ob Print wirklich in DB soll oder wenn Projekt leer bleibt?
+				int lNewWeight = lSelectionFilament.getWeight() - lResult.getWeight();
+				int lNewLength = lSelectionFilament.getLength() - lResult.getLength();
+				lSelectionFilament.setWeigth(lNewWeight);
+				lSelectionFilament.setLength(lNewLength);
+				DatabaseConnection.addPrintToDatabaseAndUpdateFilament(lResult, lSelectionFilament);
+				fillShelfFromDatabase();
 			}
 		});
 
+	}
+
+	private void showPopup(String mNameOfFXML) {
+		FXMLLoader loader = new FXMLLoader(mMainApp.getClass().getResource(mNameOfFXML));
+		Parent lPopUp;
+		try {
+			lPopUp = loader.load();
+			Scene scene = new Scene(lPopUp);
+			Stage popupStage = new Stage();
+			popupStage.initOwner(mMainApp.getPrimaryStage());
+			popupStage.initModality(Modality.WINDOW_MODAL);
+			popupStage.setScene(scene);
+			popupStage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

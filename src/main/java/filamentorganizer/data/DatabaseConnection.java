@@ -12,6 +12,7 @@ import com.j256.ormlite.table.TableUtils;
 
 import filamentorganizer.general.Constants;
 import filamentorganizer.logik.FilamentSpool;
+import filamentorganizer.logik.Print;
 import filamentorganizer.logik.Project;
 
 public class DatabaseConnection {
@@ -37,6 +38,24 @@ public class DatabaseConnection {
 			lFilamentDAO = getDAOFilament(lConnect);
 
 			lFilamentDAO.create(pFilament);
+			lConnect.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void addPrintToDatabaseAndUpdateFilament(Print pPrint, FilamentSpool pFilament) {
+		ConnectionSource lConnect = DatabaseConnection.getConnect();
+		Dao<FilamentSpool, String> lFilamentDAO;
+		Dao<Print, String> lPrintDAO;
+		try {
+			lFilamentDAO = getDAOFilament(lConnect);
+			lFilamentDAO.update(pFilament);
+
+//			lPrintDAO = getDAOPrint(lConnect);
+//			lPrintDAO.create(pPrint);
+
 			lConnect.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -79,6 +98,15 @@ public class DatabaseConnection {
 			TableUtils.createTableIfNotExists(lConnect, FilamentSpool.class);
 		}
 		return lFilamentDAO;
+	}
+
+	private static Dao<Print, String> getDAOPrint(ConnectionSource lConnect) throws SQLException {
+		Dao<Print, String> lPrintDAO;
+		lPrintDAO = DaoManager.createDao(lConnect, Print.class);
+		if (!lPrintDAO.isTableExists()) {
+			TableUtils.createTableIfNotExists(lConnect, Print.class);
+		}
+		return lPrintDAO;
 	}
 
 	public static List<Project> getProjectListFromDatabase() {
