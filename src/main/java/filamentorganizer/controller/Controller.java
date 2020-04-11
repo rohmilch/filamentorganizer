@@ -106,8 +106,6 @@ public class Controller extends AbstractController implements Initializable {
 			public void handle(Event pEvent) {
 				ControllerForPopupAddFilament popupController = new ControllerForPopupAddFilament();
 				showPopup(Constants.FXML_POPUP_ADD_FILAMENT);
-				FilamentSpool lResult = popupController.getResult();
-				DatabaseConnection.addFilamentToDatabase(lResult);
 				fillAndRefreshTables();
 			}
 
@@ -144,13 +142,15 @@ public class Controller extends AbstractController implements Initializable {
 	}
 
 	private void showPopup(String mNameOfFXML) {
-		FXMLLoader loader = new FXMLLoader(mMainApp.getClass().getResource(mNameOfFXML));
+		FXMLLoader loader = new FXMLLoader(getMainApp().getClass().getResource(mNameOfFXML));
 		Parent lPopUp;
 		try {
 			lPopUp = loader.load();
 			Scene scene = new Scene(lPopUp);
+			AbstractController lController = loader.getController();
 			Stage popupStage = new Stage();
-			popupStage.initOwner(mMainApp.getPrimaryStage());
+			lController.setStage(popupStage);
+			popupStage.initOwner(getMainApp().getPrimaryStage());
 			popupStage.initModality(Modality.WINDOW_MODAL);
 			popupStage.setScene(scene);
 			popupStage.showAndWait();
