@@ -1,5 +1,7 @@
 package filamentorganizer.logik;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,8 @@ public class Print {
 	@Id
 	@GeneratedValue
 	private int mIndex;
-
+	@Column
+	private int mDuration;
 	@Column
 	private int mLength;
 	@Column
@@ -25,6 +28,10 @@ public class Print {
 	private Project mProject;
 	@Column
 	private String mName;
+
+	@Column
+	private Date mDate;
+
 	@ManyToOne
 	@JoinColumn(name = "filamentspools")
 	private FilamentSpool mFilament;
@@ -97,6 +104,22 @@ public class Print {
 
 	public void setFilament(FilamentSpool pFilament) {
 		mFilament = pFilament;
+	}
+
+	public int getDuration() {
+		return mDuration;
+	}
+
+	public void setDuration(int pDuration) {
+		mDuration = pDuration;
+	}
+
+	public Date getDate() {
+		return mDate;
+	}
+
+	public void setDate(Date pDate) {
+		mDate = pDate;
 	}
 
 }

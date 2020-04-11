@@ -1,6 +1,7 @@
 package filamentorganizer.controller;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import filamentorganizer.logik.FilamentSpool;
@@ -21,17 +22,14 @@ public class ControllerForAddingUsage extends AbstractController implements Init
 		Project lProject = new Project();
 		lProject.setName("TestProjectName");
 		Print lBspPrint = new Print(1, 1, "TestNote", lProject, "TestName", pFilament);
+//		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+//		long mills = 0;
+//		java.util.Date lParse = formatter.parse("12-04-2012");
+//		mills = lParse.getTime();
+
+		lBspPrint.setDate(new Date());
 		lProject.getListOfPrints().add(lBspPrint);
 		return lBspPrint;
 	}
 
-	public void setStage(Stage stage) {
-		this.stage = stage;
-	}
-
-	private void closeStage() {
-		if (stage != null) {
-			stage.close();
-		}
-	}
 }

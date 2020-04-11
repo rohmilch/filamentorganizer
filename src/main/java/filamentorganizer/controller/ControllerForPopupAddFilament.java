@@ -64,6 +64,7 @@ public class ControllerForPopupAddFilament extends AbstractController implements
 		PUNewFilaDurchmWert.setTextFormatter(new TextFormatter(new DoubleStringConverter()));
 		PUNewFilaLaengWert.setTextFormatter(new TextFormatter(new IntegerStringConverter()));
 		PUNewFilaBedTempWert.setTextFormatter(new TextFormatter(new IntegerStringConverter()));
+
 	}
 
 	private void initButtonListener() {
