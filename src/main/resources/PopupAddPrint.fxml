@@ -7,13 +7,13 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="205.0" prefWidth="576.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="filamentorganizer.controller.ControllerForAddingProject">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="576.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="filamentorganizer.controller.ControllerForAddingUsage">
    <children>
-      <VBox layoutX="15.0" layoutY="32.0" prefHeight="114.0" prefWidth="536.0" spacing="30.0" AnchorPane.bottomAnchor="304.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
+      <VBox layoutX="15.0" layoutY="32.0" prefHeight="401.0" prefWidth="535.0" spacing="30.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
          <children>
             <HBox prefHeight="22.0" prefWidth="535.0">
                <children>
-                  <Label fx:id="PUNewFilaHeadText" alignment="BOTTOM_CENTER" layoutX="268.0" layoutY="68.0" prefHeight="43.0" prefWidth="535.0" text="Ein neues Projekt hinzufügen" />
+                  <Label fx:id="PUNewPrintHeadText" alignment="BOTTOM_CENTER" layoutX="268.0" layoutY="68.0" prefHeight="43.0" prefWidth="535.0" text="Einen Verbrauch hinzufügen:" />
                </children>
             </HBox>
             <HBox layoutX="15.0" layoutY="111.0">
@@ -28,7 +28,6 @@
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="140.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="140.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="140.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="140.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -37,10 +36,22 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="PUNewProjNameWert" GridPane.columnIndex="1" />
-                        <Label fx:id="PUNewProjNameName" text="Name" />
-                        <Label fx:id="PUNewProjNoteName" prefHeight="0.0" prefWidth="29.0" text="Notiz" GridPane.columnIndex="3" />
-                        <TextField fx:id="PUNewProjNoteWert" prefHeight="25.0" prefWidth="159.0" GridPane.columnIndex="5" GridPane.columnSpan="3" />
+                        <TextField fx:id="PUNewPrintDauerWert" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="PUNewPrintNameWert" GridPane.columnIndex="1" />
+                        <Label fx:id="PUNewPrintNameName" text="Name" />
+                        <Label fx:id="PUNewPrintProjektName" text="Projekt" GridPane.rowIndex="2" />
+                        <Label fx:id="PUNewPrintFilamentName" text="Filament" GridPane.rowIndex="1" />
+<!--                         <Label fx:id="PUNewPrintHerstellerName" GridPane.columnIndex="3" GridPane.rowIndex="1" /> -->
+                        <Label fx:id="PUNewPrintLaengeName" text="Länge" GridPane.columnIndex="3" />
+                        <Label fx:id="PUNewPrintNotizName" prefHeight="0.0" prefWidth="29.0" text="Notiz" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <TextField fx:id="PUNewPrintLaengeGewichtWert" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="6" GridPane.columnSpan="2147483647" />
+                        <TextField fx:id="PUNewPrintNotizWert" prefHeight="25.0" prefWidth="159.0" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+<!--                         <TextField fx:id="PUNewPrintDatumWert" GridPane.columnIndex="4" GridPane.rowIndex="3" /> -->
+                        <Label fx:id="PUNewPrintDauerName" text="Dauer" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="PUNewPrintFilamentWert" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="PUNewPrintProjektWert" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Slider fx:id="PUAddUsageToggleL0G1" blockIncrement="1.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" prefHeight="14.0" prefWidth="24.0" snapToTicks="true" GridPane.columnIndex="4" />
+                        <Label fx:id="PUNewPrintGewichtName" text="Gewicht" GridPane.columnIndex="5" />
                      </children>
                   </GridPane>
                </children>

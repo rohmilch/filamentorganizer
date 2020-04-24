@@ -27,25 +27,20 @@
 						<MenuItem mnemonicParsing="false" text="Quit" />
 					</items>
 				</Menu>
-				<Menu mnemonicParsing="false" text="Edit">
-					<items>
-						<MenuItem mnemonicParsing="false" text="Undo" />
-						<MenuItem mnemonicParsing="false" text="Redo" />
-						<SeparatorMenuItem mnemonicParsing="false" />
-						<MenuItem mnemonicParsing="false" text="Cut" />
-						<MenuItem mnemonicParsing="false" text="Copy" />
-						<MenuItem mnemonicParsing="false" text="Paste" />
-						<MenuItem mnemonicParsing="false" text="Delete" />
-						<SeparatorMenuItem mnemonicParsing="false" />
-						<MenuItem mnemonicParsing="false" text="Select All" />
-						<MenuItem mnemonicParsing="false" text="Unselect All" />
-					</items>
-				</Menu>
-				<Menu mnemonicParsing="false" text="Help">
-					<items>
-						<MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-					</items>
-				</Menu>
+<!-- 				<Menu mnemonicParsing="false" text="Edit"> -->
+<!-- 					<items> -->
+<!-- 						<MenuItem mnemonicParsing="false" text="Undo" /> -->
+<!-- 						<MenuItem mnemonicParsing="false" text="Redo" /> -->
+<!-- 						<SeparatorMenuItem mnemonicParsing="false" /> -->
+<!-- 						<MenuItem mnemonicParsing="false" text="Cut" /> -->
+<!-- 						<MenuItem mnemonicParsing="false" text="Copy" /> -->
+<!-- 						<MenuItem mnemonicParsing="false" text="Paste" /> -->
+<!-- 						<MenuItem mnemonicParsing="false" text="Delete" /> -->
+<!-- 						<SeparatorMenuItem mnemonicParsing="false" /> -->
+<!-- 						<MenuItem mnemonicParsing="false" text="Select All" /> -->
+<!-- 						<MenuItem mnemonicParsing="false" text="Unselect All" /> -->
+<!-- 					</items> -->
+<!-- 				</Menu> -->
 			</menus>
 		</MenuBar>
 		<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
@@ -62,16 +57,15 @@
 								</AnchorPane>
 							</content>
 						</Tab>
-						<Tab text="Projekte">
-							<content>
-								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-									<children>
-										<TableView fx:id="mTableViewProjects" prefHeight="200.0" prefWidth="640.0">
-										</TableView>
-									</children>
-								</AnchorPane>
-							</content>
-						</Tab>
+                  <Tab text="ProjektTree">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="208.0">
+                           <children>
+                              <TreeTableView fx:id="mTreeTableProjects" layoutX="16.0" layoutY="4.0" prefHeight="284.0" prefWidth="615.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
 					</tabs>
 				</TabPane>
 										<Button fx:id="mAddProjectButton" layoutX="180.0" layoutY="22.0" mnemonicParsing="false" text="Projekt hinzufügen" />

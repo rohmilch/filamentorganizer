@@ -10,7 +10,7 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
-import filamentorganizer.general.Constants;
+import filamentorganizer.general.ConstantsAndGeneralMethods;
 import filamentorganizer.logik.FilamentSpool;
 import filamentorganizer.logik.Print;
 import filamentorganizer.logik.Project;
@@ -24,7 +24,7 @@ public class DatabaseConnection {
 	public static ConnectionSource getConnect() {
 		ConnectionSource connectionSource = null;
 		try {
-			connectionSource = new JdbcConnectionSource(Constants.DATABASE_URL);
+			connectionSource = new JdbcConnectionSource(ConstantsAndGeneralMethods.DATABASE_URL);
 			TableUtils.createTableIfNotExists(connectionSource, FilamentSpool.class);
 			TableUtils.createTableIfNotExists(connectionSource, Project.class);
 			TableUtils.createTableIfNotExists(connectionSource, Print.class);
@@ -49,14 +49,14 @@ public class DatabaseConnection {
 		}
 	}
 
-	public static void addPrintToDatabaseAndUpdateFilament(Print pPrint, FilamentSpool pFilament) {
+	public static void addPrintToDatabaseAndUpdateFilamentAndProject(Print pPrint) {
 		ConnectionSource lConnect = DatabaseConnection.getConnect();
 		Dao<FilamentSpool, String> lFilamentDAO;
 		Dao<Print, String> lPrintDAO;
 		Dao<Project, String> lProjectDAO;
 		try {
 			lFilamentDAO = getDAOFilament(lConnect);
-			lFilamentDAO.update(pFilament);
+			lFilamentDAO.update(pPrint.getFilament());
 
 			lPrintDAO = getDAOPrint(lConnect);
 			lPrintDAO.create(pPrint);
@@ -101,16 +101,31 @@ public class DatabaseConnection {
 	public static List<Project> getProjectListFromDatabase() {
 		ConnectionSource lConnect = DatabaseConnection.getConnect();
 		Dao<Project, String> lProjectDAO;
-		List<Project> lListOFAllFilament = new ArrayList<Project>();
+		List<Project> lListOFAllProjects = new ArrayList<Project>();
 		try {
 			lProjectDAO = getDAOProject(lConnect);
-			lListOFAllFilament = lProjectDAO.queryForAll();
+			lListOFAllProjects = lProjectDAO.queryForAll();
 			lConnect.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return lListOFAllFilament;
+		return lListOFAllProjects;
+	}
+
+	public static List<Print> getPrintListFromDatabase() {
+		ConnectionSource lConnect = DatabaseConnection.getConnect();
+		Dao<Print, String> lPrintDAO;
+		List<Print> lListOFAllPrints = new ArrayList<Print>();
+		try {
+			lPrintDAO = getDAOPrint(lConnect);
+			lListOFAllPrints = lPrintDAO.queryForAll();
+			lConnect.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lListOFAllPrints;
 	}
 
 	private static Dao<FilamentSpool, String> getDAOFilament(ConnectionSource lConnect) throws SQLException {

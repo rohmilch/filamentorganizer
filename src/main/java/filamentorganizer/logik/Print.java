@@ -1,6 +1,6 @@
 package filamentorganizer.logik;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "prints")
-public class Print {
+public class Print implements Displayable {
 
 	@Id
 	@GeneratedValue
@@ -18,37 +18,45 @@ public class Print {
 	@Column
 	private int mDuration;
 	@Column
-	private int mLength;
+	private double mLength;
 	@Column
-	private int mWeight;
+	private double mWeight;
 	@Column
 	private String mNote;
 	@ManyToOne
 	@JoinColumn(name = "projects")
 	private Project mProject;
 	@Column
-	private String mName;
+	private String mNamePrint;
 
 	@Column
-	private Date mDate;
+	private double mPrice;
+
+	@Column
+	private long mDate;
 
 	@ManyToOne
 	@JoinColumn(name = "filamentspools")
 	private FilamentSpool mFilament;
 
-	public Print(int pLength, int pWeight, String pNote, Project pProject, String pName, FilamentSpool pFilament) {
+	public Print(double pLength, double pWeight, String pNote, Project pProject, String pName,
+			FilamentSpool pFilament) {
 		super();
 		mLength = pLength;
 		mWeight = pWeight;
 		mNote = pNote;
 		mProject = pProject;
-		mName = pName;
+		mNamePrint = pName;
 		mFilament = pFilament;
 	}
 
 	public Print() {
 	}
 	// DB
+
+	public Date getDateFormatted() {
+		return new Date(getDate());
+	}
 
 	public int getIndex() {
 		return mIndex;
@@ -58,19 +66,19 @@ public class Print {
 		mIndex = pIndex;
 	}
 
-	public int getLength() {
+	public double getLength() {
 		return mLength;
 	}
 
-	public void setLength(int pLength) {
+	public void setLength(double pLength) {
 		mLength = pLength;
 	}
 
-	public int getWeight() {
+	public double getWeight() {
 		return mWeight;
 	}
 
-	public void setWeight(int pWeight) {
+	public void setWeight(double pWeight) {
 		mWeight = pWeight;
 	}
 
@@ -90,12 +98,12 @@ public class Print {
 		mProject = pProject;
 	}
 
-	public String getName() {
-		return mName;
+	public String getNamePrint() {
+		return mNamePrint;
 	}
 
-	public void setName(String pName) {
-		mName = pName;
+	public void setNamePrint(String pName) {
+		mNamePrint = pName;
 	}
 
 	public FilamentSpool getFilament() {
@@ -114,12 +122,20 @@ public class Print {
 		mDuration = pDuration;
 	}
 
-	public Date getDate() {
+	public long getDate() {
 		return mDate;
 	}
 
-	public void setDate(Date pDate) {
+	public void setDate(long pDate) {
 		mDate = pDate;
+	}
+
+	public double getPrice() {
+		return mPrice;
+	}
+
+	public void setPrice(double pPrice) {
+		mPrice = pPrice;
 	}
 
 }

@@ -16,9 +16,13 @@ public class FilamentSpool {
 	private int mIndex;
 
 	@Column
-	private int mLength;
+	private double mCurrentLength;
 	@Column
-	private int mWeight;
+	private double mCurrentWeight;
+	@Column
+	private double mOriginalLength;
+	@Column
+	private double mOriginalWeight;
 	@Column
 	private String mColour;
 	@Column
@@ -42,10 +46,10 @@ public class FilamentSpool {
 		// Datenbank braucht das
 	}
 
-	public FilamentSpool(int pLength, int pWeight, String pColour, String pName, String pManufacturer,
+	public FilamentSpool(double pLength, double pWeight, String pColour, String pName, String pManufacturer,
 			Material pMaterial, double pDiameter, double pPrice, int pIdealNoozleTemp, int pIdealBedTemp) {
-		mLength = pLength;
-		mWeight = pWeight;
+		mCurrentLength = pLength;
+		mCurrentWeight = pWeight;
 		mColour = pColour;
 		mName = pName;
 		mManufacturer = pManufacturer;
@@ -56,7 +60,7 @@ public class FilamentSpool {
 		mIdealBedTemp = pIdealBedTemp;
 	}
 
-	public static FilamentSpool createASpool(int pLength, int pTotalWeigth, String pColour, String pName,
+	public static FilamentSpool createASpool(double pLength, double pTotalWeigth, String pColour, String pName,
 			String pManufacturer, String pMaterial, double pDiameter, double pPrice, int pIdealNoozleTemp,
 			int pIdealBedTemp) {
 		Material lMaterialEnum = Material.getEnum(pMaterial);
@@ -65,20 +69,10 @@ public class FilamentSpool {
 		return lFilamentSpool;
 	}
 
-	public int getLength() {
-		return mLength;
-	}
-
-	public void setLength(int pLength) {
-		mLength = pLength;
-	}
-
-	public int getWeight() {
-		return mWeight;
-	}
-
-	public void setWeigth(int pWeigth) {
-		mWeight = pWeigth;
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return getName() + " " + getColour();
 	}
 
 	public String getColour() {
@@ -160,6 +154,38 @@ public class FilamentSpool {
 
 	public void setListOfPrints(ArrayList<Print> pListOfPrints) {
 		mListOfPrints = pListOfPrints;
+	}
+
+	public double getCurrentLength() {
+		return mCurrentLength;
+	}
+
+	public void setCurrentLength(double pCurrentLength) {
+		mCurrentLength = pCurrentLength;
+	}
+
+	public double getCurrentWeight() {
+		return mCurrentWeight;
+	}
+
+	public void setCurrentWeight(double pCurrentWeight) {
+		mCurrentWeight = pCurrentWeight;
+	}
+
+	public double getOriginalLength() {
+		return mOriginalLength;
+	}
+
+	public void setOriginalLength(double pOriginalLength) {
+		mOriginalLength = pOriginalLength;
+	}
+
+	public double getOriginalWeight() {
+		return mOriginalWeight;
+	}
+
+	public void setOriginalWeight(double pOriginalWeight) {
+		mOriginalWeight = pOriginalWeight;
 	}
 
 }

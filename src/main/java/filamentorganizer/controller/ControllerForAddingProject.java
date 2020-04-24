@@ -3,35 +3,59 @@ package filamentorganizer.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import filamentorganizer.logik.FilamentSpool;
-import filamentorganizer.logik.Print;
+import filamentorganizer.data.DatabaseConnection;
 import filamentorganizer.logik.Project;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class ControllerForAddingProject extends AbstractController implements Initializable {
 
-	private Stage stage = null;
+	@FXML
+	private Button mOKButton;
+	@FXML
+	private Button mCancelButton;
+
+	@FXML
+	private TextField PUNewProjNameWert;
+	@FXML
+	private TextField PUNewProjNoteWert;
 
 	public void initialize(URL url, ResourceBundle rb) {
+		initListener();
 
 	}
 
-	public Project getResult() {
-		Project lProject = new Project();
-		lProject.setName("TestProjectName");
-		Print lBspPrint = new Print(1, 1, "TestNote", lProject, "TestName", new FilamentSpool());
-		lProject.getListOfPrints().add(lBspPrint);
-		return lProject;
-	}
+	private void initListener() {
+		mOKButton.setOnMouseClicked(new EventHandler<Event>() {
 
-	public void setStage(Stage stage) {
-		this.stage = stage;
-	}
+			public void handle(Event pEvent) {
+				if (!(PUNewProjNameWert.getText().isEmpty())) {
+					Project lProject = new Project();
+					lProject.setNameProject(PUNewProjNameWert.getText());
+					lProject.setNameProject(PUNewProjNoteWert.getText());
+					DatabaseConnection.addProjectToDatabase(lProject);
+					getStage().close();
+				} else {
+//							 popup für Fehlerhinweis
+//							Stage dialog = new Stage();
+//							dialog.initOwner(getStage());
+//							dialog.initModality(Modality.APPLICATION_MODAL);
+//							dialog.showAndWait();
+				}
+			}
+		});
 
-	private void closeStage() {
-		if (stage != null) {
-			stage.close();
-		}
+		mCancelButton.setOnMouseClicked(new EventHandler<Event>() {
+
+			public void handle(Event pEvent) {
+				getStage().close();
+			}
+
+		});
+
 	}
 }
